@@ -1,9 +1,11 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import {Provider} from "react-redux";
+import {PersistGate} from "redux-persist/integration/react";
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+import { persistor, store } from '../Redux/store';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -41,7 +43,14 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <RootLayoutNav/>
+
+      </PersistGate>
+    </Provider>
+  );
 }
 
 function RootLayoutNav() {

@@ -1,2 +1,2 @@
-# React-native-TasteJourney
+# React-native-yumyumeat
 
